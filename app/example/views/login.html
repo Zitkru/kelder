@@ -1,0 +1,33 @@
+<style>
+
+</style>
+<super-navbar>
+  <super-navbar-title>
+    Login
+  </super-navbar-title>
+</super-navbar>
+<body id="divInicial">
+<div  class="padding">
+  <form id ="loginForm">
+  	<div class="list">
+      <label class="item item-input">
+        <input type="text" name="usuario" placeholder="Nombre de usuario">
+      </label>
+      <label class="item item-input">
+        <input type="password" name="contrasegna" placeholder="Contraseña">
+      </label>
+    </div>
+    <super-navigate onclick = "" id="passwordforgoten"> ¿Se te olvidó tu contraseña? </super-navigate>
+    <div class="button-bar">
+      <a class="button button-dark" onclick = "doLogin()">Login</a>
+      <a class="button button-dark" onclick = "singup()">Registrate</a>
+    </div>
+  </form>
+
+</div>
+</body>
+<script>
+  $(function() {
+   supersonic.ui.navigationBar.hide();
+  });  
+</script>

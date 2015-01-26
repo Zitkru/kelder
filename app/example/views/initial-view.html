@@ -1,0 +1,40 @@
+<style>
+#divInicial {
+    background-image: url("../../components/images/KELDER-SPLASH.png");
+    background-size: 480px 800px;
+}
+#botones{
+	position: absolute;
+    top:80%;
+    opacity: 0.5;
+}
+#skipfornow{
+	position: absolute;
+	top: 90%;
+	left: 50%;
+}
+</style>
+
+<body id="divInicial">
+<div  class="padding">
+	<div id = "botones" class="button-bar">
+	    <a class="button button-dark" onclick = "login()">Login</a>
+	    <a class="button button-dark" onclick = "singup()">Registrate</a>
+
+  	</div>
+  <super-navigate onclick = "skipfornow()" id="skipfornow"> Skip for now </super-navigate>
+  
+  <!--<button onclick="supersonic.ui.initialView.dismiss()" class="button button-block button-balanced">Log in</button>
+#divInicial {
+    background-image: url("../../components/images/KELDER-SPLASH.png");
+    width: 100%;
+    height: 100%;
+}-->
+
+</div>
+</body>
+<script>
+  $(function() {
+   supersonic.ui.navigationBar.hide();
+  });  
+</script>
