@@ -1,23 +1,30 @@
+
 /***********************************************************
  * These styles apply for native components on iOS.
  * Read more about native styles at http://docs.appgyver.com
  ***********************************************************/
 
 navigation-bar {
-  background-color: #00B5FF;
+  /*background-color:#387fa4;*/
   color: #ffffff;
+
+  background-image: url("components/images/backgroundGeneralNavBar.png");
 }
 
 navigation-bar title {
   color: #ffffff;
   font-size: 18px;
   font-weight: 600;
+  
+  font-family: myFirstFont;
 }
 
 navigation-bar button, navigation-bar back-bar-button {
   color: #ffffff;
   font-weight: 300;
+  background-image: url("components/images/navicon-round.png");
 }
+
 
 tab-bar {
   background-color: #ffffff;

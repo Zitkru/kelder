@@ -4,16 +4,22 @@
  ***********************************************************/
 
 navigation-bar {
-  background-color: #00B5FF;
+  /*background-color:#387fa4;
+  opacity: 0.5;*/
   color: #ffffff;
   padding-left: 6px;
   padding-right: 6px;
+  background-image: url("components/images/backgroundGeneralNavBar.png");
+  font-family: mySecondFont;
+ 
+  
 }
 
 navigation-bar title {
   color: #ffffff;
   font-size: 18px;
   font-weight: 600;
+  font-family: mySecondFont;
 }
 
 navigation-bar button {
@@ -43,7 +49,7 @@ tab-bar {
 
 tab-bar tab-bar-item {
   color: #b0b1b4;
-  font-family: "Roboto";
+  font-family: mySecondFont;
   font-size: 10px;
 }
 

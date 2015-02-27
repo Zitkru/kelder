@@ -1,0 +1,58 @@
+<style>
+#reservacionDiv{
+    position: relative;
+    width: 100%;
+    height: 95%;
+    background-color: rgba(56,127,164,0.5);
+    background-size: cover;
+    top: 2.5%;
+    left: 0%;
+    text-align: center;
+    color: #FFF;
+}
+#eventoView{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+}
+.tituloReservacion{
+    color: #003943;
+    margin-top: -4%;
+    font-family: mySecondFont;
+}
+.contenidoReservacion{
+    color: #FFF;
+    z-index: 1;
+}
+.contenidoReservacion2{
+    color: #FFF;
+    margin-top: -3%;
+}
+</style>
+
+    
+<super-navbar>
+<super-navbar-title>Código QR</super-navbar-title>
+  </super-navbar>
+<div  class="padding" >
+<body id="eventoView">
+    <div  id="reservacionDiv" >
+        
+        <img src="" height="300" width="300" align="middle" id="QR" /><h6 id="digitosQR" class="contenidoReservacion2"></h6>
+        <h4 id="descuento" class="tituloReservacion"></h4>
+         <super-navigate-back class="button button-stable" style="width:50%;"><a  >OK</a></super-navigate-back>
+        <h5 class="contenidoReservacion" onclick="irPoliticas()">VER POLITICAS</h5>          
+    </div>   
+</div>
+</body>
+
+<script>
+supersonic.ui.views.current.whenVisible( function() {
+  $("#QR").attr("src",localStorage.getItem("codigoQR"));
+   // $("#QR").src=localStorage.getItem("codigoQR");
+    $("#descuento").html(localStorage.getItem("descuento"));
+    var str = localStorage.getItem("codigoQR");
+    var res = str.substring(str.indexOf('  '), str.indexOf('size'));
+    $("#digitosQR").html(res);
+    
+});    
+</script>

@@ -1,13 +1,125 @@
-<div  class="padding">
+<style>
+.columna1 {
+	position: absolute;
+    background-size: cover;
+    top: 0%;
+    width: 50%;
+	height: 33.5%;
+	left: 0%;
+}
+.columna2 {
+	position: absolute;
+    background-size: cover;
+    top: 0%;
+    width: 50%;
+	height: 33.5%;
+	left: 50%;
+}
+.columna{
+	position: absolute;
+	background-size: cover;
+	width: 100%;
+	height: 33.5%;
+	left: 0%;
+	
+}
+.fechaEvento{
+	position: absolute;
+	width: 100%;
+	height: 30%;
+	top:70%;
+	left: 0%;
+	background-color: rgba(0,0,0,0.4);
+	color: #fff;
+}
+.tituloEvento{
+  font-family: mySecondFont;
+  
+}
 
-  <div class="row">
-    <div class="col col-50">.col.col-50</div>
-    <div class="col col-50">.col.col-50</div>
-  </div>
+#eventoView{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+}
+</style>
 
+<body id="eventoView">
+<super-navbar>
+<super-navbar-button onclick="goMenu()">-----</super-navbar-button>
+      <super-navbar-title>HOME</super-navbar-title>
+  </super-navbar>
+<div  class="padding" id="gridEvents">
+
+  	<div class="columna1" id="columna1"> </div><div class="columna2"id="columna2"></div>
+  	
+  
+  
 </div>
+</body>
 <script>
-  $(function() {
-   supersonic.ui.navigationBar.hide();
-  });  
+supersonic.ui.views.current.whenVisible( function() {
+  fillHome();
+});
+                
+function fillHome() {
+    
+    $.ajax('http://soporte.technit.com.mx/Kelder/responses/imprimirEventos.php',{
+        type:'GET',
+        data:{tablaC : localStorage.getItem("idUsuarioL")},
+        dataType: 'jsonp',
+        success:function(e){
+            
+        	var alto=1;
+        	var arrayDiv = new Array();
+          var imagenLogo ="";
+            for (var i = 0; i < e.length; i++) {
+              localStorage.setItem("beneficios", e[i].beneficios);
+                //supersonic.logger.log(e[i].fechaFormat);
+                 if(e[i].nombre=="Kelder"){
+                  imagenLogo="../../components/images/KelderLogo.png";
+                } else if(e[i].nombre=="Maneki"){
+                  imagenLogo="../../components/images/ManekiLogo.png";
+                }
+
+                if(i==0){
+                    var col1 = document.getElementById("columna1");
+                    col1.innerHTML ="<div class=\"fechaEvento\" id=\"fechaEv"+i+"\"><span class=\"tituloEvento\">"+e[i].eventnombre + "<img src=\"" + imagenLogo + "\" height=\"35\" width=\"30\" align='right'></span> <br> " +e[i].fechaFormat +"         </div>";
+                    col1.style.backgroundImage = "url('http://soporte.technit.com.mx/Kelder/imagenes/"+ e[i].imagen +"')";
+                    col1.setAttribute('onClick', "fillMyEvent("+ e[i].idEvento +");");
+                    
+                }else if(i==1){
+                    var col2 = document.getElementById("columna2");
+                    col2.innerHTML ="<div class=\"fechaEvento\" id=\"fechaEv"+i+"\"><span class=\"tituloEvento\">"+e[i].eventnombre + "<img src=\"" + imagenLogo + "\" height=\"35\" width=\"35\" align='right'></span> <br> " +e[i].fechaFormat +"         </div>";
+                    col2.style.backgroundImage = "url('http://soporte.technit.com.mx/Kelder/imagenes/"+ e[i].imagen +"')";
+                    col2.setAttribute('onClick', "fillMyEvent("+ e[i].idEvento +");");
+                    
+                }else {
+                	var topEv=(33.5*alto);
+                	var stringTop=topEv+"%";
+                	arrayDiv[i] = document.createElement('div');
+			        arrayDiv[i].id = 'columna' + i;
+			        arrayDiv[i].className = 'columna';
+			        arrayDiv[i].style.top = stringTop;
+			        arrayDiv[i].style.backgroundImage = "url('http://soporte.technit.com.mx/Kelder/imagenes/"+ e[i].imagen +"')";
+			        arrayDiv[i].innerHTML = "<div class=\"fechaEvento\" id=\"fechaEv"+i+"\"><span class=\"tituloEvento\">"+e[i].eventnombre + "<img src=\"" + imagenLogo + "\" height=\"35\" width=\"35\" align='right'></span> <br> " +e[i].fechaFormat +"         </div>";
+                    arrayDiv[i].setAttribute('onClick', "fillMyEvent("+ e[i].idEvento +");");
+                    $("#gridEvents").append(arrayDiv[i]);
+                    alto++;
+                }
+                
+                
+            }
+                               
+        },
+        error:function(e){
+            alert(e);
+        }
+    });
+
+    
+
+                                      
+  } 
+
+
 </script>

@@ -7,6 +7,7 @@
   <title><%= yield.viewName %></title>
 
   <link rel="stylesheet" href="/components/supersonic/css/supersonic.css" />
+  
   <link rel="stylesheet" href="/app/common/stylesheets/application.css" />
   <link rel="import" href="/components/supersonic/components/import.html">
 
@@ -20,9 +21,8 @@
   <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
   <script src="jquery.ui.datepicker-es.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script src="/components/js/main.js"></script>
- 
-
+  <script src="../../components/js/main.js"></script>
+  
   <% _.each(yield.modules, function(module) { %>
   <script src="/app/<%= module %>.js"></script>
   <% }); %>

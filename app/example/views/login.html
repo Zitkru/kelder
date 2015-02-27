@@ -1,33 +1,122 @@
 <style>
+#divInicial{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+    text-align: center;
+}
+input {
+  width: 100%;
+  height:3em;
+  line-height:3em;
+  color: #000;
+  margin-bottom: 10px;
+  background: rgba(56,127,164, 0.2);
+  outline: none;
+  border: none;
+}
+.logFB{
+  position: absolute;
+  top:90%;
+  left: 0%;
+  width: 100%;
+  height: 10%;
+  color: #FFF;
+  font-size: 20px;
+  background-color: #3b5a99;
+  text-align: center;
+  border: none;
+  margin-bottom: 0.1%;
+  display: inline-block;
+}
+.logFB img{
+  margin-top: 2%;
+}
 
+::-webkit-input-placeholder {
+   font-size: 16px;
+   text-align: center;
+   color: #000;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;  
+   font-size: 16px;
+   color: #000;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center; 
+   font-size: 16px; 
+   color: #000;
+}
+
+:-ms-input-placeholder {  
+   text-align: center;
+   font-size: 16px;
+   color: #000; 
+}
+.login1{
+  position: absolute;
+  top:50%;
+  left: 3%;
+  width: 46%;
+  height: 10%;
+  background-color: #96c3d3;
+  color: #444;
+  font-size: 18px;
+  font-family: myFirstFont;
+  border: none;
+  display: block;
+}
+.login2{
+  position: absolute;
+  top:50%;
+  left: 51%;
+  width: 46%;
+  height: 10%;
+  background-color: #96c3d3;
+  color: #444;
+  font-size: 18px;
+  font-family: myFirstFont;
+  border: none;
+  display: block;
+}
+
+.imagenOK{
+  z-index: 3;
+}
 </style>
+
 <super-navbar>
   <super-navbar-title>
-    Login
+    LOGIN
   </super-navbar-title>
 </super-navbar>
 <body id="divInicial">
+  <div><img src="../../components/images/cancel.png" class="imagenOK" onclick="goBack();" align="left" height="40" width="40"></div>
 <div  class="padding">
+  
+        
   <form id ="loginForm">
+    
   	<div class="list">
-      <label class="item item-input">
-        <input type="text" name="usuario" placeholder="Nombre de usuario">
+      <label>
+      <br>
+      <br>
+        
+        <input type="text" name="correo" placeholder="Correo electrónico">
       </label>
-      <label class="item item-input">
+      <label>
         <input type="password" name="contrasegna" placeholder="Contraseña">
       </label>
     </div>
     <super-navigate onclick = "" id="passwordforgoten"> ¿Se te olvidó tu contraseña? </super-navigate>
-    <div class="button-bar">
-      <a class="button button-dark" onclick = "doLogin()">Login</a>
-      <a class="button button-dark" onclick = "singup()">Registrate</a>
-    </div>
+     
+    <button class="login1" onclick="doLogin()">LOG IN</button>
+    <button class="login2" onclick="singup()">REGISTRARSE</button>
+    <button class="logFB"><img src="../../components/images/facebook.png"height="35" width="20">    LOGIN CON FACEBOOK</button>
   </form>
-
+  
+  
 </div>
 </body>
-<script>
-  $(function() {
-   supersonic.ui.navigationBar.hide();
-  });  
-</script>

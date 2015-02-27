@@ -3,10 +3,76 @@
     e.preventDefault();
   });
 </script>
-<ul class="list">
-  <li class="item" onclick="myProfile()">Mi Perfil</li>
-  <li class="item" onclick="supersonic.ui.drawers.close()">Mi Reservación</li>  
-  <li class="item" onclick="supersonic.ui.drawers.close()">Experiencia</li>  
-  <li class="item" onclick="supersonic.ui.drawers.close()">Social</li>
-  <li class="item" onclick="supersonic.ui.drawers.close()">Sobre Nosotros</li>
-</ul>
+ <style>
+#divInicial{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: auto;
+    text-align: left;
+}
+.menuVIP{
+	position: absolute;
+  top:20%;
+  left: 15%;
+  width: 90%;
+	font-size: 20px;
+	list-style-type:none;
+	visibility: hidden;
+}
+.menuVIP li{
+	border-bottom: 1px solid #6A6A6A;
+	margin-top: 2%;
+	margin-bottom: 16%;
+}
+.menuNormal{
+	position: absolute;
+  top:20%;
+  left: 15%;
+  width: 90%;
+	font-size: 20px;
+	list-style-type:none;
+	visibility: hidden;
+}
+.menuNormal li{
+	border-bottom: 1px solid #6A6A6A;
+	margin-top: 2%;
+	margin-bottom: 16%;
+}
+
+</style>
+<body id="divInicial">
+	
+		<ul class="menuVIP" id="menuVIP">
+			<li onclick="goHome();">HOME</li>
+			<li onclick="goReservations();">MI RESERVACIÓN</li>
+		 	<li onclick="myProfile();">MI PERFIL</li>
+		    <li onclick="myExperience();">EXPERIENCIA</li>  
+		  	<!--<li onclick="goSocial()">SOCIAL</li>-->
+		  	<li onclick="goAcercade();">ACERCA DE</li>
+		</ul>
+		<ul class="menuNormal" id="menuNormal">
+			<li onclick="skipfornow();">HOME</li>
+		    <li onclick="myExperience();">EXPERIENCIA</li>
+		  	<li onclick="goAcercade();">ACERCA DE</li>
+		</ul>
+	
+</body>
+<script>
+$(function() {
+	if (localStorage.idUsuarioL > 0) {
+    document.getElementById("menuVIP").style.visibility="visible";
+    document.getElementById("menuNormal").style.visibility="hidden";
+   } else{
+    document.getElementById("menuVIP").style.visibility="hidden";
+    document.getElementById("menuNormal").style.visibility="visible";
+   } 
+supersonic.ui.drawers.whenDidShow(function() {
+   if (localStorage.idUsuarioL > 0) {
+    document.getElementById("menuVIP").style.visibility="visible";
+    document.getElementById("menuNormal").style.visibility="hidden";
+   } else{
+    document.getElementById("menuVIP").style.visibility="hidden";
+    document.getElementById("menuNormal").style.visibility="visible";
+   } 
+});
+});
+</script>

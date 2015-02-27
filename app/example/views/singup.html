@@ -1,38 +1,94 @@
+<style>
+#eventoView{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+    text-align: center;
+    
+}
+input, select, li {
+  width: 98%;
+  height:3em;
+  line-height:3em;
+  color: #000;
+  margin-bottom: 10px;
+  background: rgba(56,127,164, 0.2);
+  outline: none;
+  border: none;
+}
+h3{
+  color: #387fa4;
+}
+#registerForm{
+  color: #387fa4;
+  text-transform: uppercase;
+}
+
+.singUp{
+  position: relative;
+  top:90%;
+  left: 0%;
+  width: 100%;
+  height: 16%;
+  background-color: #387FA4;
+  color: #FFF;
+  text-align: center;
+  font-size: 20px;
+  font-family: myFirstFont;
+  border: none;
+}
+.botonMenu{
+  opacity: 1;
+}
+.imagenOK{
+  z-index: 5;
+}
+</style>
 <super-navbar>
   <super-navbar-title>
-    Registro
+    REGISTRO
   </super-navbar-title>
 </super-navbar>
+<body id="eventoView">
+  <div><img src="../../components/images/cancel.png" class="imagenOK" onclick="goBack();" align="left" height="40" width="40"></div>
 <div  class="padding">
   <form id ="registerForm">
     <div class="list">
-      <label class="item item-input">
-        <input type="text" name= "nombre" placeholder="Nombre">
+      <br>
+      <label>
+        <h3>Nombre</h3>
+        <input type="text" name= "nombre">
       </label>
-      <label class="item item-input">
-        <input type="text" name= "correo" placeholder="Correo electrónico">
+      <label>
+        <h3>Apellido</h3>
+        <input type="text" name= "apellido">
       </label>
-      <label class="item item-input">
-        <input type="password" name= "contrasegna" placeholder="Contraseña">
+      <label>
+        <h3>Correo electrónico</h3>
+        <input type="text" name= "correo">
       </label>
-      <label class="item item-input">
-        <input type="text" name= "telefono" placeholder="Teléfono">
+      <label>
+        <h3>Contraseña</h3>
+        <input type="password" name= "contrasegna">
       </label>
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Sexo
-        </div>
+      <label>
+        <h3>Teléfono</h3>
+        <input type="text" name= "telefono">
+      </label>
+      <label>
+         <h3>Sexo</h3>
         <select name= "sexo">
+          <option value="00">Selecciona tu sexo</option>
           <option value="M">Masculino</option>
           <option value="F">Femenino</option>
         </select>
       </label>
-      Cumpleaños
-      <label class="item item-input item-select">
+      <h3>Cumpleaños</h3>
+      <label>
         <div class="input-label">
           Día
         </div>
         <select name= "cumpleDia">
+          <option value="00">Selecciona tu Día</option>
           <option value="01">01</option>
           <option value="02">02</option>
           <option value="03">03</option>
@@ -66,11 +122,12 @@
           <option value="31">31</option>
         </select>
         </label>
-        <label class="item item-input item-select">
+        <label>
         <div class="input-label">
           Mes
         </div>
         <select name= "cumpleMes">
+          <option value="00">Selecciona tu Mes</option>
           <option value="01">Enero</option>
           <option value="02">Febrero</option>
           <option value="03">Marzo</option>
@@ -85,21 +142,24 @@
           <option value="12">Diciembre</option>
         </select>
         </label>
-        <label class="item item-input item-select">
+        <label>
         <div class="input-label">
           Año
         </div>
         <select name="cumpleAgno" id= "cumpleAgno">
+          <option value="00">Selecciona tu Año</option>
+
         </select>
         </label>
-     <label class="item item-input">
-        <input type="text" name= "codigo" placeholder="Código VIP">
+     <label>
+      <h3>Código VIP</h3>
+             <input type="text" name= "codigoVIP">
       </label>
      <ul class="list">
-
-      <li class="item item-toggle">
-         Notificaciones
-         <label class="toggle toggle-assertive">
+      <h3>Notificaciones</h3>
+      <li >
+         
+         <label class="toggle toggle-positive">
            <input type="checkbox" name="notificaciones" checked>
            <div class="track">
              <div class="handle"></div>
@@ -109,16 +169,18 @@
 
     </ul>
     </div>
-    <div class="button-bar">
-      <a class="button button-dark" onclick="registrarUsuario()">Registrate</a>
-    </div>
+    <input type="submit" class="singUp" value="      REGÍSTRATE      "></input>
+    
   </form>
 
 </div>
-<!--Haciendo el Calendario-->
+</body>
+<!--Haciendo el Calendario
+<button class="singUp" onclick="registrarUsr()">REGÍSTRATE</button>-->
 <script>
+
   $(function() {
-    supersonic.ui.navigationBar.hide();
+    //initNavBar();  registrarUsuario()
     var fecha = new Date();
     var agno = fecha.getFullYear();
     var i,a;
@@ -129,4 +191,62 @@
       $("#cumpleAgno").append(msg);
     }
   });  
+$("#registerForm").submit(function () { 
+  var errores=0;
+      if(document.forms['registerForm']['nombre'].value.length < 1) {  
+        alert("El nombre es obligatorio");  
+        document.forms['registerForm']['nombre'].focus();
+        errores++;
+      }else if(document.forms['registerForm']['apellido'].value.length < 1) {  
+        alert("El apellido es obligatorio");  
+        document.forms['registerForm']['apellido'].focus();
+        errores++;
+      }else if(document.forms['registerForm']['correo'].value.indexOf('@', 0) == -1 || document.forms['registerForm']['correo'].value.indexOf('.', 0) == -1) {  
+        alert("El correo es obligatorio");  
+        document.forms['registerForm']['correo'].focus();
+        errores++;
+      } else if(document.forms['registerForm']['contrasegna'].value.length < 1) {  
+        alert("La contraseña es obligatorio");  
+        document.forms['registerForm']['contrasegna'].focus();
+        errores++;
+      } else if(document.forms['registerForm']['telefono'].value.length < 1) {  
+        alert("El telefono es obligatorio");  
+        document.forms['registerForm']['telefono'].focus();
+        errores++;
+      } else if(document.forms['registerForm']['sexo'].value == '00') {  
+        alert("El sexo es obligatorio");  
+        document.forms['registerForm']['sexo'].focus();
+        errores++;
+      } else if(document.forms['registerForm']['cumpleDia'].value == '00') {  
+        alert("El dia de cumpleaños es obligatorio");  
+        document.forms['registerForm']['cumpleDia'].focus();
+        errores++;
+      } else if(document.forms['registerForm']['cumpleMes'].value == '00') {  
+        alert("El mes de cumpleaños es obligatorio");  
+        document.forms['registerForm']['cumpleMes'].focus();
+        errores++;
+      } else if(document.forms['registerForm']['cumpleAgno'].value == '00') {  
+        alert("El año de cumpleaños es obligatorio");  
+        document.forms['registerForm']['cumpleAgno'].focus();
+        errores++;
+      }else {
+        $.ajax('http://soporte.technit.com.mx/Kelder/responses/crearUsuario.php',{
+            type:'GET',
+            data:$('#registerForm').serialize(),
+            dataType: 'jsonp',
+            success:function(e){
+                
+                if(e.success!="El correo es inválido, reintente."){
+                    doLogin2();
+                }
+                 
+            },
+            error:function(e){
+                alert(e);
+            }
+        });
+
+      } 
+    return true;
+});
 </script>

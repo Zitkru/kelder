@@ -1,0 +1,71 @@
+<style>
+#reservacionDiv{
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    background-color: rgba(56,127,164,0.5);
+    background-size: cover;
+    top: 2.5%;
+    left: 2.5%;
+    text-align: center;
+    color: #FFF;
+}
+#eventoView{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+}
+.tituloReservacion{
+    color: #003943;
+    margin-top: -4%;
+    font-family: mySecondFont;
+}
+.contenidoReservacion{
+    color: #FFF;
+    z-index: 1;
+}
+.contenidoReservacion2{
+    color: #FFF;
+    margin-top: -3%;
+}
+.botones{
+    position: absolute;
+    width: 90%;
+    height:14%;
+    left: 5%;
+    background-color: #387FA4;
+    margin-top: 1%;
+    color:#FFF;
+    border:none;
+    font-size: 16pt;
+
+}
+</style>
+
+    
+<super-navbar>
+
+<super-navbar-button onclick="goMenu()">-----</super-navbar-button>
+<super-navbar-title>ACERCA DE</super-navbar-title>
+  </super-navbar>
+<div  class="padding" >
+<body id="eventoView">
+    <div  id="reservacionDiv" >
+        <br> 
+        <div><img src="../../components/images/KelderLogo.png" align="middle" height="70" width="70">   <img src="../../components/images/ManekiLogo.png" align="middle" height="70" width="70"></div> 
+        <h3 class="contenidoReservacion">Desarrollado por: </h3>      
+        <div><img src="../../components/images/technit.png" onclick='supersonic.app.openURL("http://www.technit.com.mx/inicio.html#/nosotros/acercade");' align="middle" height="70" width="70"></div><br>    
+        <button class="botones" onclick="irTerminos();">
+          Términos y Condiciones
+        </button> <br> <br> <br> 
+        <button class="botones" onclick="irPrivacidad();">   Aviso de privacidad   </button>    
+        
+
+    </div>   
+</div>
+</body>
+
+<script>
+supersonic.ui.views.current.whenVisible( function() {
+    $("#politicas").html(localStorage.getItem("politicas"));  
+});    
+</script>

@@ -1,13 +1,103 @@
-<super-navbar>
-  <super-navbar-title>Perfil</super-navbar-title>
-</super-navbar>
+<style>
+#eventoView{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+}
+#miPerfilDiv{
+	position: absolute;
+	width: 85%;
+	left: 15%;
+	top:39.5%;
+	text-align: left; 
+}
+#imagenPerfil{
+	position: fixed;
+	width: 100%;
+	height: 25%;
+	left: 30%;
+	top:2%; 
+}
+#gear{
+	position: relative;
+	left: 68%;
+	z-index: 1;
+}
+#gear2{
+	position: relative;
+	left: 5%;
+	z-index: 2;
+	visibility: hidden;
+}
+#profilePic{
+	position: relative;
+	left: 9%;
+	top: 9%;
+	border-radius: 60px;
+	-webkit-border-radius: 60px;
+	-moz-border-radius: 75px;
+}
+#circulo{
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	border: 2px;
+	border-color: #FFF;
+	border-style: solid;
+	border-radius: 75px;
+	-webkit-border-radius: 75px;
+	-moz-border-radius: 75px;
+}
+h3{
+	position: relative;
+	margin-top: 15%;
+	margin-bottom: 5%;
+	border-bottom: 1px solid #6A6A6A;
+}
 
+h4{
+	position: relative;
+	margin-top: 0%;
+	border-bottom: 1px solid #6A6A6A;
+}
+.singUp{
+  position: fixed;
+  top:90%;
+  left: 0%;
+  width: 100%;
+  height: 16%;
+  background-color: #387FA4;
+  color: #FFF;
+  text-align: center;
+  font-size: 20px;
+  font-family: myFirstFont;
+  border: none;
+}
+</style>
+<super-navbar>
+<super-navbar-button onclick="goMenu()">-----</super-navbar-button>
+ <super-navbar-title>PERFIL</super-navbar-title>
+</super-navbar>
+<body id="eventoView">
 <div class="padding" id="miPerfil">
-	<i class="icon super-gear-b"></i>
+	<img src="../../icons/diamond.png" width="50px" height="50px" id="gear2" onclick="irBeneficios()">
+<img src="../../icons/gear-b.png" width="50px" height="50px" id="gear" onclick="updateMyProfile()">
 	
+	<div id="imagenPerfil"></div>
+	<div id="miPerfilDiv"></div>
+	<button class="singUp" onclick="updateMyProfile2()">¿ÉRES VIP?</button>
 </div>
+
+</body>
 <script>
-  $(function() {
-   selectMyProfile();
-  });  
+$(function() { selectMyProfile();
+supersonic.ui.views.current.whenVisible( function() {
+  selectMyProfile();
+  	if(localStorage.getItem("usuarioVIP")=="VIP"){
+  		document.getElementById("gear2").style.visibility="visible";
+  	} else if(localStorage.getItem("usuarioVIP")=="Normal"){
+  		document.getElementById("gear2").style.visibility="hidden";
+  	}
+}); 
+});
+
 </script>

@@ -1,0 +1,98 @@
+<style>
+#reservacionDiv{
+    position: relative;
+    width: 95%;
+    height: 95%;
+    background-color: rgba(56,127,164,0.5);
+    background-size: cover;
+    top: 2.5%;
+    left: 2.5%;
+    text-align: center;
+    color: #FFF;
+}
+#reservacionFondo{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+    color: #FFF;
+}
+.tituloReservacion{
+    color: #003943;
+    font-family: mySecondFont;
+}
+.contenidoReservacion{
+    color: #FFF;
+    margin-top: -3%;
+}
+.contenidoReservacion2{
+    color: #FFF;
+}
+</style>
+
+    <body id="reservacionFondo">
+<super-navbar>
+<super-navbar-title>RESUMEN RESERVACIÓN</super-navbar-title>
+  </super-navbar>
+<div  class="padding" >
+    <div  id="reservacionDiv" >
+        <h3 class="tituloReservacion">Resumen Reservación</h3> <br>
+        <h3 class="contenidoReservacion">FECHA</h3>
+        <h4 id="fecha"class="contenidoReservacion"></h4> <br>
+        <h3 class="contenidoReservacion">LUGAR</h3>
+        <h4 class="contenidoReservacion" id="clubName"></h4> <br>
+        <h3 class="contenidoReservacion">INVITADOS</h3>
+        <h4 class="contenidoReservacion" id="invitados"></h4>
+        <h3 class="contenidoReservacion">ZONA</h3>
+        <h4 class="contenidoReservacion" id="zonaEvento"></h4>
+        <h3 class="contenidoReservacion">VER CORTESÍA</h3>
+        <img src="../../components/images/qrCodeImg.png" height="50" width="50" align="middle" onclick="goQR()"/><br>
+        <super-navigate-back class="button button-stable" style="width:50%;"><a  >OK</a></super-navigate-back> <br>
+        <h5 class="contenidoReservacion2" onclick="irPoliticas();">VER POLITICAS</h5>         
+    </div>   
+</div>
+</body>
+<script>
+supersonic.ui.views.current.whenVisible( function() {
+ fillMyEvent2(localStorage.getItem("idEvento"));
+    
+}); 
+ function fillMyEvent2(idEvento){
+    $.ajax('http://soporte.technit.com.mx/Kelder/responses/imprimirReservacionesApp.php',{
+        type:'GET',
+        data:{idEvento : idEvento},
+        dataType: 'jsonp',
+        success:function(e){
+            
+            for (var i = 0; i < e.length; i++) {
+                var zonaEv="";
+                if(e[i].zona==1){
+                    zonaEv="Zona mesas VIP";
+                }else if(e[i].zona==2){
+                    zonaEv="Zona mesas A1";
+                }else if(e[i].zona==3){
+                    zonaEv="Zona mesas A2";
+                }else if(e[i].zona==4){
+                    zonaEv="Zona mesas B1";
+                }else if(e[i].zona==5){
+                    zonaEv="Zona mesas B2";
+                }else if(e[i].zona==6){
+                    zonaEv="Zona de Grada";
+                }else if(e[i].zona==7){
+                    zonaEv="Zona de Fumadores";
+                }else{
+                    zonaEv="No se eligió Zona";
+                }
+                //supersonic.logger.log(e[i]);
+                $("#fecha").html(e[i].fechaFormat);
+                $("#clubName").html(e[i].nombre);    
+                $("#invitados").html(e[i].invitados);    
+                $("#zonaEvento").html(zonaEv);  
+                localStorage.setItem("politicas", e[i].politicas);
+                //$("#verPoliticas").setAttribute('onClick', "showPoliticas("+ e[i].nombre +");");        
+            }
+        },
+        error:function(e){
+            alert(e);
+        }
+    });    
+}
+</script>

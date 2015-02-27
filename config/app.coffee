@@ -13,7 +13,7 @@ module.exports =
   webView:
     viewsIgnoreStatusBar: true
     enableDoubleTapToFocus: false
-    disableOverscroll: false
+    disableOverscroll: true
     enableViewportScale: true
     enablePopGestureRecognition: true
     allowInlineMediaPlayback: true
@@ -21,4 +21,4 @@ module.exports =
   # Applies on iOS only
   statusBar:
     enabled: true
-    style: "default"
+    style: "light"

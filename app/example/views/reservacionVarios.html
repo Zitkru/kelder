@@ -1,0 +1,162 @@
+<style>
+#reservacionDiv{
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    background-color: rgba(56,127,164,0.5);
+    background-size: cover;
+    top: 2.5%;
+    left: 2.5%;
+    text-align: center;
+    color: #FFF;
+}
+#reservacionFondo{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+    color: #FFF;
+}
+.tituloReservacion{
+    color: #003943;
+    font-family: mySecondFont;
+}
+.contenidoReservacion{
+    color: #FFF;
+}
+.invitadosCalss{
+    display: inline-block;
+    position: relative;
+    width: 40%;
+    height: 10%;
+    color: #FFF;
+    text-align: center;
+}
+#invitadosC{
+    position: relative;
+    top: 25%;
+ font-size: 12pt;
+
+}
+.right{
+ position: relative;
+
+}
+</style>
+
+    
+<super-navbar>
+<super-navbar-title>RESERVACIÓN</super-navbar-title>
+  </super-navbar>
+  <body id="reservacionFondo">
+<div  class="padding" >
+    <div  id="reservacionDiv" >
+        <h3 class="tituloReservacion">Reservar</h3>
+        <h3 class="contenidoReservacion">FECHA</h3>
+        <h4 id="fecha"class="contenidoReservacion"></h4> 
+        <h3 class="contenidoReservacion">LUGAR</h3>
+        <h4 class="contenidoReservacion" id="clubName"></h4> 
+        <h4 class="contenidoReservacion">INVITADOS</h4>
+        <div class="invitadosCalss"><img src=" ../../components/images/chevron-left1.png" onclick="addInv(-1);" align="left" id="left" height="30" width="30"><span id="invitadosC">1</span><img src="../../components/images/chevron-right1.png" onclick="addInv(1);" id="right" align="right" height="30" width="30"></div>
+        <h4 class="contenidoReservacion" id="zonaH4">SELECCIONAR ZONA</h4>
+        <h4 class="contenidoReservacion"id="zonaH42" onclick="goZona()">Ver mapa</h4>
+        <div  class="button-bar">
+            <super-navigate-back class="button button-stable" style="width:50%;"><a  >CANCELAR</a></super-navigate-back>
+           
+            <a class="button button-stable" onclick = "doReservation()">CONFIRMAR</a>
+        </div>         
+    </div>   
+</div>
+</body>
+<script>
+supersonic.ui.views.current.whenVisible( function() {
+ fillMyEvent2(localStorage.getItem("idEvento"));
+$("#invitadosC").html("1");
+    if(localStorage.getItem("NombreClub")=="Maneki"){
+        document.getElementById("zonaH42").style.visibility="hidden";
+        document.getElementById("zonaH4").style.visibility="hidden";
+        localStorage.setItem("zona", 7);
+    }
+    localStorage.setItem("invitados", 1);
+    contadorInvitados = 1;
+    if(localStorage.getItem("invitados") <= 1){
+        document.getElementById("left").style.visibility="hidden";
+    }  
+}); 
+ function fillMyEvent2(idEvento){
+    $.ajax('http://soporte.technit.com.mx/Kelder/responses/imprimirEvento.php',{
+        type:'GET',
+        data:{idEvento : idEvento},
+        dataType: 'jsonp',
+        success:function(e){
+            for (var i = 0; i < e.length; i++) {
+                //supersonic.logger.log(localStorage.getItem("idUsuarioL"));
+                //supersonic.logger.log(e[i].idEvento);
+                $("#fecha").html(e[i].fechaFormat);
+                $("#clubName").html(e[i].nombre);           
+            }
+        },
+        error:function(e){
+            alert(e);
+        }
+    });    
+}
+function addInv(contador){
+
+    $("#invitadosC").html('');
+    contadorInvitados = contadorInvitados+contador;
+    localStorage.setItem("invitados", contadorInvitados);
+    
+    $("#invitadosC").html(contadorInvitados);
+    //alert(localStorage.getItem("invitados"));
+
+    if(localStorage.getItem("invitados") < 10){
+        document.getElementById("right").style.visibility="visible";
+    }else{
+        document.getElementById("right").style.visibility="hidden";
+    } 
+    if(localStorage.getItem("invitados") > 1){
+        document.getElementById("left").style.visibility="visible";
+    }else{
+        document.getElementById("left").style.visibility="hidden";
+    }
+    
+}
+function doReservation(){
+    $.ajax('http://soporte.technit.com.mx/Kelder/responses/myProfile.php',{
+        type:'GET',
+        data:{idUsuario : localStorage.getItem("idUsuarioL")},
+        dataType: 'jsonp',
+        success:function(e){
+            var descuento="";
+            var idUsuarioforQR= localStorage.getItem("idUsuarioL");
+            var idEventoforQR = localStorage.getItem("idEvento");
+            /*supersonic.logger.log("idEvento "+idEventoforQR);
+            supersonic.logger.log("idUsuarioL "+idUsuarioforQR);*/
+            if(e.codigo!=null && e.codigo!="" && e.codigo>0){
+                descuento="Descuento de 100%  ";
+                qrdesc=100;
+                localStorage.setItem("descuento", descuento);
+            }else{
+                descuento="Descuento de 50%  ";
+                qrdesc=50;
+                localStorage.setItem("descuento", descuento);
+            }
+            //supersonic.logger.log("qrdesc "+qrdesc);
+        
+            //supersonic.logger.log("nombre "+e.nombre);
+            //supersonic.logger.log("descuento "+descuento);
+            var nuevaSrc="https://api.qrserver.com/v1/create-qr-code/?data="+descuento+e.nombre+idEventoforQR+idUsuarioforQR+"&#37;size=100x100";
+            //supersonic.logger.log("url "+nuevaSrc);
+            localStorage.setItem("codigoQR", nuevaSrc);
+            doCode(nuevaSrc,qrdesc);
+            selectIdQR(nuevaSrc);
+            createReservation();
+            
+                   
+               
+        },
+        error:function(e){
+            alert(e);
+        }
+    });
+}
+</script>

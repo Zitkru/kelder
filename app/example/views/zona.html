@@ -1,0 +1,190 @@
+<style>
+.columna{
+	position: absolute;
+  top: 0%;
+	width: 100%;
+	height: 135%;
+	left: 0%;
+  background-image: url("../../components/images/zona.png");
+  background-size: cover;
+}
+.zonaVIP{
+  position: absolute;
+  width: 45%;
+  background-color: #96c3d3;
+  height: 17%;
+  top: 12.5%;
+  left: 46%;
+  opacity: 0.5;
+  visibility: visible;
+}
+.zonaA1{
+  position: absolute;
+  width: 23%;
+  background-color: #96c3d3;
+  height: 18%;
+  top: 30%;
+  opacity: 0.5;
+  visibility: visible;
+  left: 39%;
+}
+.zonaA2{
+  position: absolute;
+  width: 23%;
+  background-color: #96c3d3;
+  height: 18%;
+  top: 30%;
+  opacity: 0.5;
+  visibility: visible;
+  left: 75%;
+}
+.zonaB1{
+  position: absolute;
+  width: 23%;
+  background-color: #96c3d3;
+   height: 18%;
+  top: 61%;
+  opacity: 0.5;
+  visibility: visible;
+  left: 39%;
+}
+.zonaB2{
+  position: absolute;
+  width: 23%;
+  background-color: #96c3d3;
+   height: 18%;
+  top: 61%;
+  opacity: 0.5;
+  visibility: visible;
+  left: 75%;
+}
+.zonaGrada{
+  position: absolute;
+  width: 45%;
+  background-color: #96c3d3;
+  height: 6%;
+  top: 79%;
+  opacity: 0.5;
+  visibility: visible;
+  left: 46%;
+}
+.zonaFumar{
+  position: absolute;
+  width: 21%;
+  background-color: #96c3d3;
+  height: 39%;
+  top: 61%;
+  opacity: 0.5;
+  visibility: visible;
+  left: 4%;
+}
+.imagenOK{
+  z-index: 2;
+  margin-top: 2%;
+  margin-left: 2%;
+}
+</style>
+<super-navbar>
+      <super-navbar-title>SELECCIONA ZONA</super-navbar-title>
+  </super-navbar>
+<div  class="padding">
+  
+    	<div class="columna">
+        <div><img src="../../components/images/ok.png" class="imagenOK" onclick="goBack();" align="left" height="30" width="30"></div>
+        <div class="zonaVIP" id="zonaVIP" onclick="asignZone(1);"></div>
+        <div class="zonaA1" id="zonaA1" onclick="asignZone(2);"></div>
+        <div class="zonaA2" id="zonaA2" onclick="asignZone(3);"></div>
+        <div class="zonaB1" id="zonaB1" onclick="asignZone(4);"></div>
+        <div class="zonaB2" id="zonaB2" onclick="asignZone(5);"></div>
+        <div class="zonaGrada" id="zonaGrada" onclick="asignZone(6);"></div>
+        <div class="zonaFumar" id="zonaFumar" onclick="asignZone(7);"></div>
+      </div>
+	  	  
+</div>
+<script>
+  $(function() {
+            if(localStorage.getItem("usuarioVIP")=="VIP"){
+      document.getElementById("zonaVIP").style.visibility="visible";
+    } else if(localStorage.getItem("usuarioVIP")=="Normal"){
+      document.getElementById("zonaVIP").style.visibility="hidden";
+    }
+  });  
+  function asignZone(idZone){
+    switch(idZone) {
+      case 1:
+          document.getElementById("zonaVIP").style.backgroundColor = "#003943";
+          document.getElementById("zonaA1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaGrada").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaFumar").style.backgroundColor = "#96c3d3";
+          localStorage.setItem("zona", idZone);
+          break; 
+      case 2:
+          document.getElementById("zonaVIP").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA1").style.backgroundColor = "#003943";
+          document.getElementById("zonaA2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaGrada").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaFumar").style.backgroundColor = "#96c3d3";
+          localStorage.setItem("zona", idZone);
+          break;
+      case 3:
+          document.getElementById("zonaVIP").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA2").style.backgroundColor = "#003943";
+          document.getElementById("zonaB1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaGrada").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaFumar").style.backgroundColor = "#96c3d3";
+          localStorage.setItem("zona", idZone);
+          break;
+      case 4:
+          document.getElementById("zonaVIP").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB1").style.backgroundColor = "#003943";
+          document.getElementById("zonaB2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaGrada").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaFumar").style.backgroundColor = "#96c3d3";
+          localStorage.setItem("zona", idZone);
+          break;
+      case 5:
+          document.getElementById("zonaVIP").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB2").style.backgroundColor = "#003943";
+          document.getElementById("zonaGrada").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaFumar").style.backgroundColor = "#96c3d3";
+          localStorage.setItem("zona", idZone);
+          break;
+      case 6:
+          document.getElementById("zonaVIP").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaGrada").style.backgroundColor = "#003943";
+          document.getElementById("zonaFumar").style.backgroundColor = "#96c3d3";
+          localStorage.setItem("zona", idZone);
+          break;   
+      case 7:
+          document.getElementById("zonaVIP").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaA2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB1").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaB2").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaGrada").style.backgroundColor = "#96c3d3";
+          document.getElementById("zonaFumar").style.backgroundColor = "#003943";
+          localStorage.setItem("zona", idZone);
+          break;      
+    }
+    
+    
+//    steroids.modal.hide();
+  }
+  
+</script>

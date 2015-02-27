@@ -1,38 +1,64 @@
+<style>
+#eventoView{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+    text-align: center;
+}
+input, select, li {
+  width: 98%;
+  height:3em;
+  line-height:3em;
+  border-radius: 5px;
+  color: #000;
+  margin-bottom: 10px;
+  background: rgba(56,127,164, 0.2);
+  outline: none;
+  border: none;
+  text-shadow: #FFF 0px 1px 5px;
+}
+</style>
 <super-navbar>
   <super-navbar-title>
-    Registro
+    ACTUALIZAR PERFIL
   </super-navbar-title>
 </super-navbar>
+<body id="eventoView">
 <div  class="padding">
-  <form id ="registerForm">
+  <form id ="updateProfileForm">
     <div class="list">
-      <label class="item item-input">
-        <input type="text" name= "nombre" placeholder="Nombre">
+      <label >
+        <h3>Nombre</h3>
+        <input type="text" name= "nombre" id ="nombreProfile" placeholder="Nombre" value="">
       </label>
-      <label class="item item-input">
-        <input type="text" name= "correo" placeholder="Correo electrónico">
+      <label >
+        <h3>Apellido</h3>
+        <input type="text" name= "apellido" id ="apellido" placeholder="Nombre" value="">
       </label>
-      <label class="item item-input">
-        <input type="password" name= "contrasegna" placeholder="Contraseña">
+      <label >
+        <h3>Correo electrónico</h3>
+        <input type="text" name= "correo" id ="correo" placeholder="Correo electrónico" value="" readonly>
       </label>
-      <label class="item item-input">
-        <input type="text" name= "telefono" placeholder="Teléfono">
+      <label >
+        <h3>Contraseña</h3>
+        <input type="password" name= "contrasegna"id ="contrasegna" placeholder="Contraseña"value="">
       </label>
-      <label class="item item-input item-select">
-        <div class="input-label">
-          Sexo
-        </div>
-        <select name= "sexo">
+      <label >
+        <h3>Teléfono</h3>
+        <input type="text" name= "telefono"id ="telefono" placeholder="Teléfono"value="">
+      </label>
+      <label >
+        <h3>Sexo</h3>
+        <select name= "sexo"id ="sexo"value="">
           <option value="M">Masculino</option>
           <option value="F">Femenino</option>
         </select>
       </label>
-      Cumpleaños
-      <label class="item item-input item-select">
+      <h3>Cumpleaños</h3>
+      <label >
         <div class="input-label">
           Día
         </div>
-        <select name= "cumpleDia">
+        <select name= "cumpleDia"id ="cumpleDia"value="">
           <option value="01">01</option>
           <option value="02">02</option>
           <option value="03">03</option>
@@ -66,11 +92,11 @@
           <option value="31">31</option>
         </select>
         </label>
-        <label class="item item-input item-select">
+        <label >
         <div class="input-label">
           Mes
         </div>
-        <select name= "cumpleMes">
+        <select name= "cumpleMes"id ="cumpleMes"value="">
           <option value="01">Enero</option>
           <option value="02">Febrero</option>
           <option value="03">Marzo</option>
@@ -85,22 +111,20 @@
           <option value="12">Diciembre</option>
         </select>
         </label>
-        <label class="item item-input item-select">
+        <label >
         <div class="input-label">
           Año
         </div>
-        <select name="cumpleAgno" id= "cumpleAgno">
+        <select name="cumpleAgno" id= "cumpleAgno"value="">
         </select>
         </label>
-     <label class="item item-input">
-        <input type="text" name= "codigo" placeholder="Código VIP">
-      </label>
+     
      <ul class="list">
-
-      <li class="item item-toggle">
-         Notificaciones
-         <label class="toggle toggle-assertive">
-           <input type="checkbox" name="notificaciones" checked>
+      <h3>Notificaciones</h3>
+      <li >
+         
+         <label class="toggle toggle-positive">
+           <input type="checkbox" name="notificaciones" id ="notificaciones">
            <div class="track">
              <div class="handle"></div>
            </div>
@@ -110,15 +134,18 @@
     </ul>
     </div>
     <div class="button-bar">
-      <a class="button button-dark" onclick="registrarUsuario()">Registrate</a>
+      <a class="button button-stable" onclick="doUpdateProfile()">Actualizar Perfil</a>
     </div>
   </form>
 
 </div>
+</body>
 <!--Haciendo el Calendario-->
 <script>
-  $(function() {
-    supersonic.ui.navigationBar.hide();
+supersonic.ui.views.current.whenVisible( function() {
+ $("#cumpleAgno").html("");
+    fillMyProfile();
+    
     var fecha = new Date();
     var agno = fecha.getFullYear();
     var i,a;
@@ -128,5 +155,5 @@
       var msg = $("<option value ="+a+" >"+ a+"</option>");                                
       $("#cumpleAgno").append(msg);
     }
-  });  
+}); 
 </script>

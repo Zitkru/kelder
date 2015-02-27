@@ -6,7 +6,7 @@ module.exports =
   
 
   rootView:
-   location: "example#initial-view"
+   location: "example#home"
 
   preloads: [
     {
@@ -14,28 +14,84 @@ module.exports =
       location: "example#drawer"
     }
     {
-      id: "login"
-      location: "example#login"
+      id: "event"
+      location: "example#event"
     }
     {
-      id: "singup"
-      location: "example#singup"
+      id: "experience"
+      location: "example#experience"
+    }
+    {
+      id: "experienceKelder"
+      location: "example#experiencekelder"
+    }
+    {
+      id: "experienceManiqui"
+      location: "example#experiencemaniqui"
     }
     {
       id: "home"
       location: "example#home"
     }
     {
+      id: "initialView"
+      location: "example#initial-view"
+    }
+    {
+      id: "login"
+      location: "example#login"
+    }
+    {
       id: "myprofile"
       location: "example#myprofile"
+    }
+    {
+      id: "myReservations"
+      location: "example#myReservations"
+    }
+    {
+      id: "QRcode"
+      location: "example#QRcode"
+    }
+    {
+      id: "reservacion"
+      location: "example#reservacion"
+    }
+    {
+      id: "reservacionHecha"
+      location: "example#reservacionHecha"
+    }
+    {
+      id: "reservacionHecha2"
+      location: "example#reservacionHecha2"
+    }
+    {
+      id: "reservacionVarios"
+      location: "example#reservacionVarios"
+    }
+    {
+      id: "singup"
+      location: "example#singup"
+    }
+    {
+      id: "social"
+      location: "example#social"
     }
     {
       id: "updatemyprofile"
       location: "example#updatemyprofile"
     }
     {
-      id: "initialView"
-      location: "example#initial-view"
+      id: "updatemyprofile2"
+      location: "example#updatemyprofile2"
+    }
+    {
+      id: "zona"
+      location: "example#zona"
+    }
+    {
+      id: "acercade"
+      location: "example#acercade"
     }
   ]
 
@@ -47,6 +103,6 @@ module.exports =
     options:
       animation: "swingingDoor"
   
-  #initialView:
-  #  id: "initialView"
-  #  location: "example#initial-view"
+  initialView:
+    id: "initialView"
+    location: "example#initial-view"

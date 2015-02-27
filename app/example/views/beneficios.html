@@ -1,0 +1,52 @@
+<style>
+#reservacionDiv{
+    position: relative;
+    width: 95%;
+    height: 95%;
+    background-color: rgba(56,127,164,0.5);
+    background-size: cover;
+    top: 2.5%;
+    left: 2.5%;
+    text-align: center;
+    color: #FFF;
+}
+#eventoView{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+}
+.tituloReservacion{
+    color: #003943;
+    margin-top: -4%;
+    font-family: mySecondFont;
+}
+.contenidoReservacion{
+    color: #FFF;
+    z-index: 1;
+}
+.contenidoReservacion2{
+    color: #FFF;
+    margin-top: -3%;
+}
+</style>
+
+    
+<super-navbar>
+<super-navbar-title>BENEFICIOS</super-navbar-title>
+  </super-navbar>
+<div  class="padding" >
+<body id="eventoView">
+    <div  id="reservacionDiv" >
+        <div><img src="../../components/images/cancel.png" onclick="goBack();" align="right" height="30" width="30"></div><br>      <br> 
+              
+        <h4 class="tituloReservacion">VIP</h4>
+        <h3 class="contenidoReservacion">BENEFICIOS</h3> <br>      <br>      
+        <div style="position:relative; width:80%; height:80%; left:10%; text-align:left;"><p id="beneficios"></p><div>
+    </div>   
+</div>
+</body>
+
+<script>
+supersonic.ui.views.current.whenVisible( function() {
+    $("#beneficios").html(localStorage.getItem("beneficios"));  
+});    
+</script>

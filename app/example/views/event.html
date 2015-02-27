@@ -1,0 +1,147 @@
+<style>
+.column1 {
+    top: 0%;
+    width: 100%;
+}
+.column2 {
+    top: 36%;
+    width: 80%;
+    left: 10%;
+    position: absolute;
+    display: inline;
+  height: 50%;
+  z-index: -2;
+}
+.columna{
+  position: absolute;
+ 
+  height: 50%;
+  left: 0%;
+}
+iframe{
+   width: 100%;
+}
+#botones{
+   
+    opacity: 0.7;
+    left: 0%;
+}
+.boldTitle{
+  font-family: mySecondFont;
+  color: #2e5362;
+  text-transform: uppercase;
+}
+.clubNombre{
+  margin-top: -4%;
+  text-transform: uppercase;
+}
+p{margin-top: -4%;}
+.login1{
+  position: fixed;
+  top:90%;
+  left: 0%;
+  width: 49.5%;
+  height: 10%;
+  background-color: #96c3d3;
+  color: #fff;
+  font-size: 15px;
+  font-family: mySecondFont;
+  border: none;
+  display: block;
+}
+.login2{
+  position: fixed;
+  top:90%;
+  left: 50.5%;
+  width: 49.5%;
+  height: 10%;
+  background-color: #96c3d3;
+  color: #fff;
+  font-size: 15px;
+  font-family: mySecondFont;
+  border: none;
+  display: block;
+}
+.bottom{
+  height: 12%;
+  position: relative;
+}
+</style>
+
+    <script type="text/javascript" src="../../components/js/jssor.js"></script>
+    <script type="text/javascript" src="../../components/js/jssor.slider.js"></script>
+<super-navbar>
+<super-navbar-button onclick="goMenu()">-----</super-navbar-button>
+      <super-navbar-title>EVENTO</super-navbar-title>
+  </super-navbar>
+  
+<div  class="padding" >
+    <div id="slider1_container" style="position: fixed; top: 0px; left: 0px; width:320px;
+        height: 150px;">
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: fixed; left: 0px; top: 0px; width: 320px; height: 150px;
+            overflow: hidden;">
+            <div><img u="image" src="http://soporte.technit.com.mx/Kelder/imagenes/1.jpg" /></div>
+            <div><img u="image" src="http://soporte.technit.com.mx/Kelder/imagenes/2.jpg" /></div>
+            <div><img u="image" src="http://soporte.technit.com.mx/Kelder/imagenes/3.jpg" /></div>
+            <div><img u="image" src="http://soporte.technit.com.mx/Kelder/imagenes/4.jpg" /></div>
+        </div>
+    </div>
+    <div  class="column2">
+        <h3 class="boldTitle" id ="tituloEvento"></h3>
+        <h4 class="clubNombre" id="nombreClub"></h4>
+        <h5 class="boldTitle">HORARIO</h5>
+        <p id="horario"></p>
+        <h5 class="boldTitle">DETALLES</h5>
+        <p id="detalles"></p>
+        <h5 class="boldTitle">MÁS</h5>
+        <p id="descripcion"></p>
+        <h5 class="boldTitle">MÚSICA</h5>
+        <p id="musica"></p><br><br>
+      <div class="bottom"></div>    
+    </div>
+
+    <button class="login1" onclick="goReservar(2)">LISTA DE INVITADOS</button>
+    <button class="login2" onclick="goReservar(1)">RESERVAR</button>
+    
+</div>
+<script>
+ supersonic.ui.views.current.whenVisible( function() {
+  fillMyEvent2(localStorage.getItem("idEvento"));
+     //supersonic.logger.log(localStorage.getItem("idEvento"));
+    var options = {
+
+        $AutoPlay: false,                                   //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+        $DragOrientation: 1                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+    };
+
+    var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+});
+ 
+ function fillMyEvent2(idEvento){
+    $.ajax('http://soporte.technit.com.mx/Kelder/responses/imprimirEvento.php',{
+        type:'GET',
+        data:{idEvento : idEvento},
+        dataType: 'jsonp',
+        success:function(e){
+            
+            for (var i = 0; i < e.length; i++) {
+               
+                
+                $("#tituloEvento").html(e[i].eventnombre);
+                $("#nombreClub").html(e[i].nombre);
+                $("#horario").html(e[i].fechaFormat);
+                $("#detalles").html(e[i].detalles);
+                $("#descripcion").html(e[i].descripcion);
+                $("#musica").html(e[i].musica);          
+                localStorage.setItem("NombreClub", e[i].nombre);      
+            }
+            
+        },
+        error:function(e){
+            alert(e);
+        }
+    });    
+}
+
+</script>

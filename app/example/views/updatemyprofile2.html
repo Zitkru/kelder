@@ -1,0 +1,95 @@
+<style>
+#eventoView{
+    background-image: url("../../components/images/backgroundGeneral.png");
+    background-size: cover;
+    text-align: center;
+}
+input, select, li {
+  width: 180%;
+  height:3em;
+  line-height:3em;
+  color: #000;
+  margin-bottom: 10px;
+  background: rgba(56,127,164, 0.2);
+  outline: none;
+  border: none;
+  text-shadow: #FFF 0px 1px 5px;
+}
+#updateProfileForm{
+  position:fixed;
+  text-align: center;
+}
+#correo2{
+  visibility: hidden;
+}
+#codigoVIP{
+  left: 10%;
+}
+h2{
+  position: relative;
+  color: #003943;
+    font-family: mySecondFont;
+}
+h4{
+  position: relative;
+  
+}
+.singUp{
+  position: fixed;
+  top:90%;
+  left: 0%;
+  width: 100%;
+  height: 16%;
+  background-color: #387FA4;
+  color: #FFF;
+  text-align: center;
+  font-size: 20px;
+  font-family: myFirstFont;
+  border: none;
+}
+</style>
+<super-navbar>
+ <super-navbar-title>
+    VIP
+  </super-navbar-title>
+</super-navbar>
+<body id="eventoView">
+  <button class="singUp" onclick="doUpdateProfile2()">Actualizar Membresía</button>
+<div  class="padding">
+  <form id ="updateProfileForm2">
+    <div class="list">
+      
+      <label >
+        <input type="text" name= "correo2" id ="correo2" placeholder="Correo electrónico" value="" readonly>
+      </label>
+      <label ><br>
+      <h2>VIP</h2>
+      <h4>MEMBRESÍA</h4>
+        <input type="text" name= "codigoVIP2"id ="codigoVIP2" value="">
+      </label>
+
+    </div>
+    
+  </form>
+
+</div>
+</body>
+<!--Haciendo el Calendario-->
+<script>
+
+supersonic.ui.views.current.whenVisible( function() {
+ 
+ $("#cumpleAgno2").html("");
+    fillMyProfile2();
+    
+    var fecha = new Date();
+    var agno = fecha.getFullYear();
+    var i,a;
+    var edad_max = 60;
+    var edad_min = 18;
+    for(a= (agno - edad_max); a < (agno - edad_min); a++){
+      var msg = $("<option value ="+a+" >"+ a+"</option>");                                
+      $("#cumpleAgno2").append(msg);
+    }
+}); 
+</script>
